@@ -1,0 +1,45 @@
+
+{
+    "students":[
+                {
+                    "id": 1, 
+                    "firstName": "Jan", 
+                    "lastName": "Kowalski", 
+                    "email": "jkowalski@gmail.com",
+                    "subject":"PIW", 
+                    "tags":"PIW", 
+                    "description": "Poszukuje osoby do projektu "
+                },
+
+                {
+                    "id": 2, 
+                    "firstName": "Michał",  
+                    "lastName": "Kowalski", 
+                    "email": "mkowalski@gmail.com",
+                    "subject": "RiPO",
+                    "tags": "Serafin Lorem Lorem Lorem Lorem Lorem Lorem", 
+                    "description": "Poszukuje osoby do projektu która ogarnia openCV, pythona venv itp itd "
+                }
+    ],
+
+    "groups": [
+        {
+            "id": 1, 
+            "subject": "PIW",
+            "topic": "Aplikacja w Reacie",
+            "tags":"Szandała", 
+            "description": "Poszukujemy grafika do grupy ",
+            "participants": ["Grzegorz Kowalski", "Maciek Nowak"]
+        },
+    
+        {
+            "id": 2, 
+            "subject": "PIW",
+            "topic": "Aplikacja w Reacie",
+            "tags":"Szandała", 
+            "description": "Poszukujemy grafika do grupy ",
+            "participants": ["Grzegorz Kowalski", "Maciek Nowak"]
+        }
+
+    ]
+}
