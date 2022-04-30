@@ -14,19 +14,21 @@ function Nav() {
 
     // Styles variable
     const classes = useStyles();
-  
+
     const{userName} = useContext(LoginContext)
 
 
     const renderProfile = () => {
       return(
-        <IconButton
-        size="large"
-        edge="end"
-        color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
+        <Link to="/profile">
+          <IconButton
+          size="large"
+          edge="end"
+          color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+        </Link>
       )
     }
 
@@ -86,13 +88,13 @@ function Nav() {
                 Find Group
               </Typography>
             </Link>
+              <Box 
+              sx={{ display: {md: 'flex' } }}
+              className={classes.login}
+              >
+                {renderLoginOrProfile()}
+              </Box>
 
-            <Box 
-            sx={{ display: {md: 'flex' } }}
-            className={classes.login}
-            >
-              {renderLoginOrProfile()}
-            </Box>
         </Toolbar>
       </Container>
       </AppBar>

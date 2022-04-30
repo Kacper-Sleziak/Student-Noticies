@@ -10,14 +10,13 @@ import { Link } from "react-router-dom";
 
 function Login() {
 
-    const{setUsername, userName} = useContext(LoginContext)
+    const{setUsername, userName, auth, setAuth} = useContext(LoginContext)
 
     const classes = useStyles();
 
     // states represents value in text fields
     const [userNameValue, setUsernameValue] = useState("")
     const [passwordValue, setPasswordValue] = useState("")
-    const [auth, setAuth] = useState(false);
 
     const authUser = () => {
         setUsername(userNameValue)

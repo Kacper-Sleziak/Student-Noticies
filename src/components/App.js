@@ -30,9 +30,10 @@ const theme = createTheme({
 
 function App() {
     const[userName, setUsername] = useState("")
+    const[auth, setAuth] = useState(false)
 
     return (
-        <LoginContext.Provider value={{ userName, setUsername }}>
+        <LoginContext.Provider value={{ userName, setUsername, auth, setAuth}}>
             <ThemeProvider 
             theme={theme}
             >
