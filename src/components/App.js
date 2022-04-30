@@ -2,9 +2,11 @@ import { BrowserRouter as Router,
         Routes, Route } from 'react-router-dom';
 import StudentSearch from './subpages/StudentSearch';
 import GroupSearch from './subpages/GroupSearch';
+import Login from './subpages/Login';
 import './index.css';
 import { ThemeProvider, createTheme  } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
+import { LoginContext } from "../contexts/LoginContext";
 
 const theme = createTheme({
     palette: {
@@ -26,23 +28,31 @@ const theme = createTheme({
 });
 
 function App() {
+    const[userName, setUsername] = useState("")
+
     return (
-        <ThemeProvider 
-        theme={theme}
-        >
-            <Router>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={<StudentSearch />} 
+        <LoginContext.Provider value={{ userName, setUsername }}>
+            <ThemeProvider 
+            theme={theme}
+            >
+                <Router>
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<StudentSearch />} 
+                            />
+                        <Route
+                            path="/group"
+                            element={<GroupSearch />} 
+                            />
+                        <Route
+                            path="/login"
+                            element={<Login />} 
                         />
-                    <Route
-                        path="/group"
-                        element={<GroupSearch />} 
-                        />
-                </Routes>
-            </Router>
-        </ThemeProvider>
+                    </Routes>
+                </Router>
+            </ThemeProvider>
+        </LoginContext.Provider>
     );
 }
 

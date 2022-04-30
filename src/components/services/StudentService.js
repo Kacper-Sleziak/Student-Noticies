@@ -9,6 +9,5 @@ export function getStudents(){
 }
 
 export function addStudent(student) {
-    student = JSON.stringify(student)
-    
+    student = JSON.stringify(student)    
 }
