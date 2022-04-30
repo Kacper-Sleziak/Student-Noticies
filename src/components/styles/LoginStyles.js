@@ -12,7 +12,17 @@ const useStyles= makeStyles({
         height: "500px",
     },
 
-    textField: {
+    authContainer: {
+        marginTop:"40px",
+        paddingTop: "3%",
+        width:"80%",
+        marginLeft:"auto", 
+        marginRight:"auto",
+        height: "500px",
+    },
+
+    homePage: {
+        color: "#0b4096",
     }
   });
 

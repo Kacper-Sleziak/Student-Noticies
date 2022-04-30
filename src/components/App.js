@@ -7,6 +7,7 @@ import './index.css';
 import { ThemeProvider, createTheme  } from '@material-ui/core';
 import React, { useState } from 'react';
 import { LoginContext } from "../contexts/LoginContext";
+import Profile from './subpages/Profile';
 
 const theme = createTheme({
     palette: {
@@ -48,6 +49,11 @@ function App() {
                         <Route
                             path="/login"
                             element={<Login />} 
+                        />
+
+                        <Route
+                            path="/profile"
+                            element={<Profile />} 
                         />
                     </Routes>
                 </Router>

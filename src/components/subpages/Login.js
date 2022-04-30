@@ -5,19 +5,19 @@ import Button from "@material-ui/core/Button";
 import { useStyles } from "../styles/LoginStyles";
 import React, { useContext, useState } from 'react';
 import { LoginContext } from '../../contexts/LoginContext';
+import { Link } from "react-router-dom";
 
 
 function Login() {
 
-    const{setUsername} = useContext(LoginContext)
+    const{setUsername, userName} = useContext(LoginContext)
 
     const classes = useStyles();
 
     // states represents value in text fields
     const [userNameValue, setUsernameValue] = useState("")
     const [passwordValue, setPasswordValue] = useState("")
-    const [auth, setAuth] = useState(false)
-
+    const [auth, setAuth] = useState(false);
 
     const authUser = () => {
         setUsername(userNameValue)
@@ -43,55 +43,87 @@ function Login() {
             });
         })
     }
+
+    // render if user is not auth
+    const renderContext = () => {
+        return(
+            <Grid container
+            className={classes.mainContainer}
+            direction="column"
+            alignItems="center"
+            spacing={1}
+            >
+                <Grid item>
+                    <TextField
+                        hiddenLabel
+                        id="filled-hidden-label-small"
+                        variant="filled"
+                        placeholder="Username"
+                        size="large"
+                        value={userNameValue}
+                        onChange={(e) => setUsernameValue(e.target.value)}
+                        />
+                </Grid>
+
+                <Grid item>
+                    <TextField
+                        hiddenLabel
+                        id="filled-hidden-label-small"
+                        variant="filled"
+                        placeholder="Password"
+                        size="large"
+                        value={passwordValue}
+                        onChange={(e) => setPasswordValue(e.target.value)}
+                        />
+                </Grid>
+
+                <Grid item>
+                    <Button
+                    variant="contained"
+                    size="large"
+                    onClick = {() => loginHandler()}
+                    >
+                        Login
+                    </Button>
+                </Grid>
+            </Grid>
+        )
+    }
+
+    // render if user is auth
+    const renderUserLoggedIn = () => {
+        return(
+            <Grid container
+            alignItems="center"
+            direction="column"
+            className={classes.authContainer}
+            >
+                <Grid item>
+                    <h1>Hello {userName}!</h1>
+                </Grid>
+                
+                <Grid item>
+                    <h1>You are logged in</h1>
+                </Grid>
+
+                <Grid item
+                >
+                    <Link to="/">
+                        <h2
+                        style={{color:"#0b4096"}}
+                        >
+                            Home Page
+                        </h2>
+                    </Link>
+                </Grid>
+            </Grid>
+        )
+    }
     
     return(
         <div>
-
-        <Nav/>
-
-        <Grid container
-        className={classes.mainContainer}
-        direction="column"
-        alignItems="center"
-        spacing={1}
-        >
-            <Grid item>
-                <TextField
-                    hiddenLabel
-                    id="filled-hidden-label-small"
-                    variant="filled"
-                    placeholder="Username"
-                    size="large"
-                    value={userNameValue}
-                    onChange={(e) => setUsernameValue(e.target.value)}
-                    />
-            </Grid>
-
-            <Grid item>
-                <TextField
-                    hiddenLabel
-                    id="filled-hidden-label-small"
-                    variant="filled"
-                    placeholder="Password"
-                    size="large"
-                    value={passwordValue}
-                    onChange={(e) => setPasswordValue(e.target.value)}
-                    />
-            </Grid>
-
-            <Grid item>
-                <Button
-                variant="contained"
-                size="large"
-                onClick = {() => loginHandler()}
-                >
-                    Login
-                </Button>
-            </Grid>
-        </Grid>
-
-        
-
+            <Nav/>
+            {auth ? renderUserLoggedIn() : renderContext()} 
         </div>
     )
 }
