@@ -9,6 +9,14 @@ import { Box } from '@material-ui/core';
 import { IconButton } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import { LoginContext } from '../../contexts/LoginContext';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase/init";
+
+import {
+  setDoc,
+  getDoc,
+  doc,
+  } from "firebase/firestore";
 
 function Nav() {
 
@@ -16,9 +24,10 @@ function Nav() {
     const classes = useStyles();
 
     const{userName} = useContext(LoginContext)
+    const [googleUser, loading, error] = useAuthState(auth);
 
 
-    const renderProfile = () => {
+    const renderProfile = (user) => {
       return(
         <Link to="/profile">
           <IconButton
@@ -26,8 +35,13 @@ function Nav() {
           edge="end"
           color="inherit"
           >
-            <AccountCircle />
+            <AccountCircle 
+            sx={{
+              marginRight: 10
+            }}
+            />
           </IconButton>
+          {user}
         </Link>
       )
     }
@@ -47,11 +61,17 @@ function Nav() {
 
     // Render nav elements by userName value
     const renderLoginOrProfile = () => {
-      if (userName === ""){
+
+      if(googleUser) {
+        var login = renderProfile(googleUser.displayName);
+        return(login);
+      } 
+      else if (userName === ""){
         var login = renderLogin();
         return(login);
-      } else {
-        var profile = renderProfile();
+      }
+      else {
+        var profile = renderProfile(userName);
         return(profile);
       }
     }

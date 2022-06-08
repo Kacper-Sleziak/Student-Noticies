@@ -3,11 +3,14 @@ import { BrowserRouter as Router,
 import StudentSearch from './subpages/StudentSearch';
 import GroupSearch from './subpages/GroupSearch';
 import Login from './subpages/Login';
+import GoogleLogin from './subpages/GoogleLogin';
 import './index.css';
 import { ThemeProvider, createTheme  } from '@material-ui/core';
 import React, { useState } from 'react';
 import { LoginContext } from "../contexts/LoginContext";
 import Profile from './subpages/Profile';
+
+
 
 const theme = createTheme({
     palette: {
@@ -55,6 +58,11 @@ function App() {
                         <Route
                             path="/profile"
                             element={<Profile />} 
+                        />
+ 
+                        <Route
+                            path="/googlelogin"
+                            element={<GoogleLogin />} 
                         />
                     </Routes>
                 </Router>

@@ -14,7 +14,6 @@ import {
     } from "firebase/firestore";
 
 const googleProvider = new GoogleAuthProvider();
-
 export const logInWithGoogle = async () => {
     try {
         const response = await signInWithPopup(auth, googleProvider);
@@ -26,7 +25,8 @@ export const logInWithGoogle = async () => {
             await setDoc(q, {
                 name: user.displayName,
                 authProvider: "google",
-                email: user.email
+                email: user.email,
+                roles: ["admin", "doctor"]
             });
         }
 

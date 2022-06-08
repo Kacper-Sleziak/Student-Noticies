@@ -85,6 +85,15 @@ function Login() {
                         Login
                     </Button>
                 </Grid>
+
+                <Grid item>
+                    <Button
+                    variant="contained"
+                    size="large"
+                    >
+                        Login With Google
+                    </Button>
+                </Grid>
             </Grid>
         )
     }
