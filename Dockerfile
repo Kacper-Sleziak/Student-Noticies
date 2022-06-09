@@ -1,7 +1,19 @@
-FROM node:17-alpine
+FROM ubuntu:22.04
+
+RUN apt update && apt-get install -y curl
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+
+RUN apt update && apt-get install -y nodejs
+
+RUN mkdir /app
+
 WORKDIR /app
-COPY package.json .
+
+COPY package.json ./
+
+RUN npm install @mui/material @emotion/react @emotion/styled --force
 RUN npm install
-COPY . .
-EXPOSE 3000
-CMD ["npm", "start"]
+
+COPY ./ ./
+
+ENTRYPOINT [ "npm", "start" ]
